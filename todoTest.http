@@ -1,0 +1,30 @@
+
+POST http://localhost:3000/todos
+Content-Type: application/json
+
+{
+    "title":"walk with Theo",
+    "description": "Three times a day",
+    "completed": false
+}
+
+###
+GET  http://localhost:3000/todos
+Content-Type: application/json
+
+
+###
+GET  http://localhost:3000/todos/6442271bfae46e1b782927f3
+Content-Type: application/json
+
+###
+PATCH  http://localhost:3000/todos/6442271bfae46e1b782927f3
+Content-Type: application/json
+
+{
+    "title":"Walk with Theo2",
+    "description": "Two times a day",
+    "completed": false
+}
+###
+DELETE http://localhost:3000/todos/6442260dfae46e1b782927e9
