@@ -5,11 +5,7 @@ import bcrypt from "bcrypt";
 export async function signin(req, res, next) {
   try {
     const { email, password } = req.body;
-    const user = await userModel
-      .findOne(
-        { email }
-      )
-      .lean();
+    const user = await userModel.findOne( { email }).lean();
     if (user) {
       console.log(user);
       const match = await bcrypt.compare(password, user.password);

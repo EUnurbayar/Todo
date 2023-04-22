@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { UserService } from './user.service';
+import { IUser, UserService } from './user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -18,7 +19,7 @@ import { UserService } from './user.service';
 })
 export class SignupComponent {
   private userService = inject(UserService);
-
+ private router = inject(Router)
  form = inject(FormBuilder).nonNullable.group({
   email: ['', Validators.required],
   fullname: ['',Validators.required],
@@ -26,6 +27,11 @@ export class SignupComponent {
  });
 
 signup(){
-  this.userService.signup
+  this.userService.signup(this.form.value as IUser)
+  .subscribe(response => {
+    if(response.success){
+      this.router.navigate(['', 'signin'])
+    }
+  })
 }
 }
